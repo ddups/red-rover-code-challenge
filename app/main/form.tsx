@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const VALID_REGEX = /^\(([A-Za-z0-9:]+)((,[A-Za-z0-9:]+)|(\([A-Za-z0-9:]+)|(\)+))*\)$/;
+const validRegex = /^\(([A-Za-z0-9:]+)((,[A-Za-z0-9:]+)|(\([A-Za-z0-9:]+)|(\)+))*\)$/;
 const placeholderText = "(id, name, email, type(id, name, customFields(c1, c2, c3)), externalId)";
 let parsedHierarchy: string[] = [];
 
@@ -26,11 +26,11 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
   function submit() {
     // reset parsed hierarchy
     onParse([]);
-    let trimmedInput = normalizeInput(input);
-    if (!isValidInput(trimmedInput)) {
-      alert("Invalid input string. Please check your parentheses and structure.");
+    let normalizedInput = normalizeInput(input);
+    if (!isValidInput(normalizedInput)) {
+      alert("Invalid input received, could not parse.");
     } else {
-      printInDefaultOrder(trimmedInput);
+      printInDefaultOrder(normalizedInput);
     }
   }
 
@@ -40,7 +40,6 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
    * @param input The input string to parse and print
    */
   function printInDefaultOrder(input: string) {
-    // Placeholder for actual print logic
     console.log("Printing in default order");
 
     const chars = [...input];
@@ -59,7 +58,9 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
           // if this is not the first group, add a tab for nested groups
           if (i > 0) {
             // add word
-            words.push(word);
+            if (word.length > 0) {
+              words.push(word);
+            }
             word = "";
 
             // increase tab level
@@ -69,6 +70,12 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
         case ')':
           // reduce tab level
           tabLevel--;
+          if (i == chars.length - 1) {
+            // push last word if at end of string
+            if (word.length > 0) {
+              words.push(word);
+            }
+          }
           break;
         default:
           // accumulate characters for the current word
@@ -85,10 +92,6 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
       }
     });
 
-    // push the last word if exists
-    if (word.length > 0) {
-      words.push(word);
-    }
     parsedHierarchy = words;
     console.log(parsedHierarchy.join("\n"));
     onParse(parsedHierarchy);
@@ -154,6 +157,6 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
    * @returns true if the input matches the valid regex, false otherwise
    */
   function isValidRegex(input: string) {
-    return VALID_REGEX.test(input);
+    return validRegex.test(input);
   }
 }
