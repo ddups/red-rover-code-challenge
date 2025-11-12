@@ -5,16 +5,11 @@
 	- [Requirements](#requirements)
 	- [Assumptions](#assumptions)
 - [Implementation Details](#implementation-details)
-	- [First Iteration](#first-iteration)
-	- [Second Iteration](#second-iteration)
-- [Testing](#testing)
-	- [Considerations](#considerations)
-	- [Running the tests](#running-the-tests)
-- [Using the Application](#using-the-application)
-	- [Starting the Application](#starting-the-application)
-	- [Making a Request](#making-a-request)
 - [Future Considerations](#future-considerations)
-	- [Potential Enhancements](#potential-enhancements)
+- [Using the Application](#using-the-application)
+	- [Getting Started](#getting-started)
+	- [Building for Production](#building-for-production)
+    - [Deployment](#deployment)
 
 ---
 # Preface
@@ -50,6 +45,50 @@ The "Welcome" project that was setup by the create command used [Tailwind CSS](h
 The app consists of a single text input and a button to kick off the "parsing" of the string. I reused some of the logic from my previous solution, and I started by simply printing the parsed output on the console. Once I felt like I had the parsing down, I moved on to figuring out how to display it on the page.
 
 I figured out how to pass data from the main component to the child components, and return it via callbacks (also a common method in Angular development) and finally had a solution that I was happy with.
+
+## Test Input
+Here are some additional test cases that I used to challenge my requirements and assumptions:
+#### Valid strings
+- Begins with sub-record
+  - `(employee(id,firstname,employeeType(id),lastname),id,created,location)`
+- Ends with sub-record
+  - `(id,created,location,employee(id,firstname,employeeType(id),lastname))`
+- Record with single child, no sub-record
+  - `(employee)`
+- Record with sub-record as only child with second layer sub-record
+  - `(employee(employeeType(id)))`
+- Record with values included
+  - `(id:123456,created:202051112,employee(id:4444,firstname:Derek,employeeType(id:404),lastname:Dupuis),location:Dover)`
+- Record with extra whitespace
+  - `( employee ( employeeType ( id ) ) )`
+
+#### Invalid strings
+- Empty record
+  - `()`
+- Record with empty sub-record
+  - `(employee())`
+- Begins with comma
+  - `(,employee,location)`
+- Ends with comma
+  - `(employee,location,)`
+- Begins with two left parentheses - mismatched
+  - `((employee)`
+- Ends with two right parentheses - mismatched
+  - `(employee))`
+- Ends with left parenthesis
+  - `(employee()`
+- Missing initial left parenthesis
+  - `employee)`
+- Missing ultimate right parenthesis
+  - `(employee`
+- Missing both outside parentheses
+  - `employee`
+
+---
+# Future Considerations
+Obviously the first thing I would do if I had more time/knowledge of React would be to actually solve both parts of the challenge. My original solution for the Frontline challenge used a recursive strategy to represent the "Records", and utilized a TreeMap for storing the values to automatically have things in alphabetical order. This is *a lot* more complicated to do in TypeScript, especially with a limited working knowledge of the React framework.
+
+I would also have liked to include things like logging, unit testing, and probably would consider using some advanced Regex to quickly parse out the groups of properties, which would likely be more performant than iterating over the string.
 
 ---
 # Using the Application
