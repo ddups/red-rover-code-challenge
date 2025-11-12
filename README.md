@@ -5,6 +5,7 @@
 	- [Requirements](#requirements)
 	- [Assumptions](#assumptions)
 - [Implementation Details](#implementation-details)
+    - [Test Input](#test-input)
 - [Future Considerations](#future-considerations)
 - [Using the Application](#using-the-application)
 	- [Getting Started](#getting-started)
@@ -17,7 +18,7 @@ When I first opened the instructions for this coding challenge, I was quite surp
 
 I wasn't sure how to handle this situation - it felt like cheating to essentially rewrite the base code in C# given it's extreme similarities to Java.
 
-I decided that since I already had a deep understanding of the concepts involved with solving the problem, I would challenge myself to do something I haven't really done before - create a React app from scratch and solve the challenge in a new language. This turned out to be more challenging than I expected, but I was able to use the [React documentation](https://react.dev/learn/) and plenty of Googling to get through it.
+I decided that since I already had a deep understanding of the concepts involved with solving the problem, I would challenge myself to do something I haven't really done before - create a React app from scratch and solve it in a new language. This turned out to be more challenging than I expected, but I was able to use the [React documentation](https://react.dev/learn/) and plenty of Googling to get through it.
 
 Although I recognize that this is far from a production-quality React app, I am proud of what I was able to accomplish in a few hours. I also admit that this actually only solves the first part of the problem, but given my previous solution, I hope that this doesn't detract from my "score" and instead shows just how much I really want this position. 
 
