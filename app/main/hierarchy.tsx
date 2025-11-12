@@ -8,14 +8,18 @@ export function HierarchyDisplay({ title, data, onClear }: { title: string; data
             </button>
             <div className="w-80 p-4 rounded-md border border-gray-200">
                 <ul>
-                    {data.map((item, index) => (
-                        <li
-                            style={{ whiteSpace: "pre-wrap" }}
-                            key={index}
-                        >
-                            {item}
-                        </li>
-                    ))}
+                    {
+                        // iterate over data and display each word
+                        data.map((word, index) => (
+                            <li
+                                // this is gross but it preserves whitespace for display purposes
+                                style={{ whiteSpace: "pre-wrap" }}
+                                key={index}
+                            >
+                                {word}
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </div>

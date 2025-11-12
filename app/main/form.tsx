@@ -12,7 +12,7 @@ export function Form({ onParse }: { onParse: (hierarchy: string[]) => void }) {
       className="flex flex-col items-center rounded-3xl border border-gray-200 p-6 space-y-4">
       <input type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(event) => setInput(event.target.value)}
         className="w-full text-center rounded-md border border-gray-200"
         placeholder={placeholderText}
       />
