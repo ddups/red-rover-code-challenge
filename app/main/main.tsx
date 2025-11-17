@@ -3,7 +3,8 @@ import { HierarchyDisplay } from "./hierarchy";
 import { useState } from "react";
 
 export function Main() {
-  const [hierarchy, setHierarchy] = useState<string[]>([]);
+  const [defaultHierarchy, setDefaultHierarchy] = useState<string[]>([]);
+  const [alphaHierarchy, setAlphaHierarchy] = useState<string[]>([]);
 
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
@@ -13,12 +14,22 @@ export function Main() {
         </header>
 
         <div className="max-w-[800px] w-full space-y-6 px-4">
-          <Form onParse={(hierarchy) => setHierarchy(hierarchy)} />
-          <HierarchyDisplay
-            title="Hierarchy Display"
-            data={hierarchy}
-            onClear={() => setHierarchy([])}
+          <Form
+            onParseDefault={(hierarchy) => setDefaultHierarchy(hierarchy)}
+            onParseAlpha={(hierarchy) => setAlphaHierarchy(hierarchy)}
           />
+          <div className="flex gap-4 min-h-0">
+            <HierarchyDisplay
+              title="Default Hierarchy"
+              data={defaultHierarchy}
+              onClear={() => setDefaultHierarchy([])}
+            />
+            <HierarchyDisplay
+              title="Alphabetical Hierarchy"
+              data={alphaHierarchy}
+              onClear={() => setAlphaHierarchy([])}
+            />
+          </div>
         </div>
       </div>
     </main>

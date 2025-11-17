@@ -20,7 +20,7 @@ I wasn't sure how to handle this situation - it felt like cheating to essentiall
 
 I decided that since I already had a deep understanding of the concepts involved with solving the problem, I would challenge myself to do something I haven't really done before - create a React app from scratch and solve it in a new language. This turned out to be more challenging than I expected, but I was able to use the [React documentation](https://react.dev/learn/) and plenty of Googling to get through it.
 
-Although I recognize that this is far from a production-quality React app, I am proud of what I was able to accomplish in a few hours. I also admit that this actually only solves the first part of the problem, but given my previous solution, I hope that this doesn't detract from my "score" and instead shows just how much I really want this position.
+Although I recognize that this is far from a production-quality React app, I am proud of what I was able to accomplish in a few hours.
 
 ---
 # Requirements and Assumptions
@@ -43,7 +43,7 @@ After I had the project setup, I spent some time looking through the documentati
 
 The "Welcome" project that was setup by the create command used [Tailwind CSS](https://tailwindcss.com/docs) so I just stuck with that even though it was also unfamiliar to me. I found it to be mostly intuitive once I understood a little bit of the syntax, but I kept it very basic because I thought my time would be better spent on the actual functionality.
 
-The app consists of a single text input and a button to kick off the "parsing" of the string. I reused some of the logic from my previous solution, and I started by simply printing the parsed output on the console. Once I felt like I had the parsing down, I moved on to figuring out how to display it on the page.
+The app consists of a single text input and a button to kick off the "parsing" of the string. I reused most of the logic from my previous solution -  translating the Java code to Typescript was a fun challenge. I started by simply printing the parsed output on the console. Once I felt like I had the parsing down, I moved on to figuring out how to display it on the page.
 
 I figured out how to pass data from the main component to the child components, and return it via callbacks (also a common method in Angular development) and finally had a solution that I was happy with.
 
@@ -87,7 +87,12 @@ Here are some additional test cases that I used to challenge my requirements and
 
 ---
 # Future Considerations
-Obviously the first thing I would do if I had more time/knowledge of React would be to actually solve both parts of the challenge. My original solution for the Frontline challenge used a recursive strategy to represent the "Records", and utilized a TreeMap for storing the values to automatically have things in alphabetical order. This is *a lot* more complicated to do in TypeScript, especially with a limited working knowledge of the React framework.
+I would have loved to spend more time with React to learn the best ways to
+organize the functions, because as it stands now the Form class is pretty
+messy. I tried to make it readable with lots of comments, but the first thing
+I would do to make this more production-ready would be to focus on "separation of concerns" to clean it up and organize it better. But it works for a "quick and dirty" solution.
+
+I also feel like with just a little more time spent with Tailwind, that I could have made it a lot prettier, but this was definitely a secondary consideration.
 
 I would also have liked to include things like logging, unit testing, and probably would consider using some advanced Regex to quickly parse out the groups of properties, which would likely be more performant than iterating over the string.
 

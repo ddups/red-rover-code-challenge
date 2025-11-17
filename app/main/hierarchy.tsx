@@ -27,7 +27,6 @@ export function HierarchyDisplay({ title, data, onClear }: { title: string; data
 
     function clear() {
         return () => {
-            console.log("Clearing hierarchy display");
             onClear([]);
         };
     }
